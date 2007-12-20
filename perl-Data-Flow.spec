@@ -14,6 +14,7 @@ Source:		%{realname}-%{version}.tar.bz2
 BuildRequires:	perl-devel
 BuildRequires:	perl
 BuildArch:	noarch
+Buildroot:	%{_tmppath}/%{name}-buildroot
 
 %description
 Data-Flow module for perl
