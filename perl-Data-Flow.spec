@@ -1,27 +1,25 @@
 %define name perl-Data-Flow
-%define realname Data-Flow
-%define version 0.09
-%define release %mkrel 3
+%define module Data-Flow
+%define version 1.01
+%define release %mkrel 1
 
-Summary:	Data-Flow module for perl 
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
+Summary:	Simple-minded recipe-controlled build of data
 License:	GPL or Artistic
 Group:		Development/Perl
-URL:		http://www.cpan.org
-Source:		%{realname}-%{version}.tar.bz2
-BuildRequires:	perl-devel
-BuildRequires:	perl
+URL:		http://search.cpan.org/dist/%{module}
+Source:		http://www.cpan.org/modules/by-module/Data/%{module}-%{version}.tar.gz
 BuildArch:	noarch
-Buildroot:	%{_tmppath}/%{name}-buildroot
+Buildroot:	%{_tmppath}/%{name}-%{version}
 
 %description
-Data-Flow module for perl
+Perl extension for simple-minded recipe-controlled build of data.
 
 %prep
 
-%setup -q -n %{realname}-%{version} 
+%setup -q -n %{module}-%{version} 
 
 %build
 
@@ -32,17 +30,16 @@ Data-Flow module for perl
 make test
 
 %install
-[ -n "%{buildroot}" -a "%{buildroot}" != / ] && rm -rf %{buildroot}
-
+rm -rf %{buildroot}
 %makeinstall_std
 
 %clean 
-[ -n "%{buildroot}" -a "%{buildroot}" != / ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
 %doc Changes
-%{perl_vendorlib}/Data/Flow.pm
-%{perl_vendorlib}/auto/Data/Flow/autosplit.ix
+%{perl_vendorlib}/Data
+%{perl_vendorlib}/auto/Data
 %{_mandir}/*/*
 
