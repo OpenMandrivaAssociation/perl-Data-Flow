@@ -1,7 +1,7 @@
 %define name perl-Data-Flow
 %define module Data-Flow
 %define version 1.02
-%define release %mkrel 1
+%define release %mkrel 2
 
 Name:		%{name}
 Version:	%{version}
