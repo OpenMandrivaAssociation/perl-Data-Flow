@@ -1,32 +1,28 @@
-%define name perl-Data-Flow
-%define module Data-Flow
-%define version 1.02
-%define release %mkrel 2
+%define upstream_name    Data-Flow
+%define upstream_version 1.02
 
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:       perl-%{upstream_name}
+Version:    %perl_convert_version %{upstream_version}
+Release:    %mkrel 1
+
 Summary:	Simple-minded recipe-controlled build of data
-License:	GPL or Artistic
+License:	GPL+ or Artistic
 Group:		Development/Perl
-URL:		http://search.cpan.org/dist/%{module}
-Source:		http://www.cpan.org/modules/by-module/Data/%{module}-%{version}.tar.gz
+Url:		http://search.cpan.org/dist/%{upstream_name}
+Source0:	http://www.cpan.org/modules/by-module/Data/%{upstream_name}-%{upstream_version}.tar.gz
+
 BuildArch:	noarch
-Buildroot:	%{_tmppath}/%{name}-%{version}
+Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}
 
 %description
 Perl extension for simple-minded recipe-controlled build of data.
 
 %prep
-
-%setup -q -n %{module}-%{version} 
+%setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
-
 %{__perl} Makefile.PL INSTALLDIRS=vendor
-
 %make
-
 make test
 
 %install
@@ -42,4 +38,3 @@ rm -rf %{buildroot}
 %{perl_vendorlib}/Data
 %{perl_vendorlib}/auto/Data
 %{_mandir}/*/*
-
